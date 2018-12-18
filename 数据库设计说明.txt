@@ -1,0 +1,5 @@
+user_table主键:user_id(证件号) varchar(20)
+book_table主键:book_id varchar(20)
+location_table主键:barcode(索书号）varchar(20)
+comment_table主键：
+
