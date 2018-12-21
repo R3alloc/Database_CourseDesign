@@ -7,7 +7,7 @@ public class Book_Location {
     private String loc_barcode;	//条码号
     private String loc_voliss;	//年卷期
     private String loc_room;	//馆藏地
-    private String loc_status;	//书刊状态
+    private String loc_status;	//书刊状态四种： 可借 借出 阅览 不可借
     private String loc_location;//定位
     private Date loc_borrTime;	//借出时间
     private Date loc_dueTime;	//到期时间
