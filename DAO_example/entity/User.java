@@ -1,5 +1,6 @@
 package entity;
 import java.sql.Date;
+import entity.*;
 public class User {
 	String user_id;
 	String user_pwd;
@@ -7,10 +8,48 @@ public class User {
 	String user_sex;
 	Date start_date;
 	Date end_date;
-	int max_borrow;
+	User_Type user_type;
+	String type;
 	String email;
 	String tel;
 	String address;
+	public User() {
+	}
+	public User(String user_id,String user_pwd) {
+		this.user_id=user_id;
+		this.user_pwd=user_pwd;		
+	}
+	public User(String user_id,String user_pwd,String user_name,
+			Date start_date,Date end_date) {
+		this.user_id=user_id;
+		this.user_pwd=user_pwd;
+		this.user_name=user_name;
+		this.start_date=start_date;
+		this.end_date=end_date;
+	}
+	public User(String user_id,String user_pwd,String user_name,String user_sex,
+			Date start_date,Date end_date,User_Type user_type) {
+		this.user_id=user_id;
+		this.user_pwd=user_pwd;
+		this.user_name=user_name;
+		this.user_type=user_type;
+		this.start_date=start_date;
+		this.end_date=end_date;
+		this.user_sex=user_sex;
+	}
+	public User(String user_id,String user_pwd,String user_name,String user_sex,
+			Date start_date,Date end_date,User_Type user_type,String email,String tel,String address) {
+		this.user_id=user_id;
+		this.user_pwd=user_pwd;
+		this.user_name=user_name;
+		this.user_sex=user_sex;
+		this.start_date=start_date;
+		this.end_date=end_date;
+		this.user_type=user_type;
+		this.email=email;
+		this.tel=tel;
+		this.address=address;
+	}
 	public String getUser_id() {
 		return user_id;
 	}
@@ -47,11 +86,18 @@ public class User {
 	public void setEnd_date(Date end_date) {
 		this.end_date = end_date;
 	}
-	public int getMax_borrow() {
-		return max_borrow;
+	public User_Type getUser_type() {
+		return user_type;
 	}
-	public void setMax_borrow(int max_borrow) {
-		this.max_borrow = max_borrow;
+	public void setUser_type(User_Type user_type) {
+		this.user_type = user_type;
+	}
+	
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
 	}
 	public String getEmail() {
 		return email;
