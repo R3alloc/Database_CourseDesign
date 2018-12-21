@@ -1,3 +1,4 @@
+package entity;
 import java.sql.Date;
 
 public class Borrow_table
@@ -5,7 +6,8 @@ public class Borrow_table
     //条码号和用户id的组合 组成一条借书记录的主键
     private String loc_barcode;	//条码号
     private String user_id;	//用户id
-
+    
+    private String loc_room;
     private String book_name;
     private Date loc_borrTime;
     private Date loc_dueTime;
@@ -49,5 +51,13 @@ public class Borrow_table
     public void setUser_id(String user_id) {
     	this.user_id = user_id;
     }
+
+	public String getBook_name() {
+		return book_name;
+	}
+
+	public void setBook_name(String book_name) {
+		this.book_name = book_name;
+	}
 
 }
