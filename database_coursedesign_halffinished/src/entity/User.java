@@ -1,6 +1,7 @@
 package entity;
 import java.sql.Date;
 import entity.*;
+import vo.User_Type;
 public class User {
 	String user_id;
 	String user_pwd;

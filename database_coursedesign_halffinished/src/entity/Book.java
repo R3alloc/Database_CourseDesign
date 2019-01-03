@@ -18,7 +18,7 @@ public class Book {
 	String loc_callNo;//索书号
 	String book_abstract;//摘要
 	String book_target;//面向人群
-	String book_douban_summarized;//豆瓣
+	String book_douban_summarized;//豆瓣短评
 	
 	public String getBook_type() {
 		return book_type;

@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Connection;
 import entity.User;
-import entity.User_Type;
+import vo.User_Type;
 
 public class UserDAOSQLImpl extends DAOBase implements UserDAO {
 	private static final String CREATE_USER_SQL=

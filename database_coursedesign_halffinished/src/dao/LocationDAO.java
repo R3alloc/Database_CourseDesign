@@ -1,5 +1,6 @@
 package dao;
 import entity.*;
+import vo.Book_Location;
 
 public interface LocationDAO extends DAO {
 	

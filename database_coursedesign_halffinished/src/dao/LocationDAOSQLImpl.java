@@ -1,35 +1,32 @@
 package dao;
 import java.sql.*;
 
-import entity.Book_Location;
+import vo.Book_Location;
 
 public class LocationDAOSQLImpl extends DAOBase implements LocationDAO {
 	
 	private String loc_table_name="book_storeinfo";
 	public boolean createLocation(Book_Location bk_loc)throws DAOException
 	{
-		String create_loc_sql="insert into book_storeinfo (loc_callNo,loc_barcode,loc_voliss,loc_room,loc_status,loc_location) "
+		String create_loc_sql="insert into book_storeinfo (loc_barcode,loc_voliss,loc_room,loc_status,loc_location,loc_callNo) "
 							+" values(?,?,?,?,?,?) ";
 		Connection conn = null;
 		PreparedStatement ps =null;
 		try{
 			conn = this.getConnection();	//使用继承自DAOBase的方法
-			System.out.println("zzzzzzzzzzzzz"+   create_loc_sql);
+			
 			ps  = conn.prepareStatement(create_loc_sql);
-			ps.setString(1, bk_loc.getLoc_callNo());
-			ps.setString(2, bk_loc.getLoc_barcode());
-			ps.setString(3, bk_loc.getLoc_voliss());
-			ps.setString(4, bk_loc.getLoc_room());
-			ps.setString(5, bk_loc.getLoc_status());
-			ps.setString(6, bk_loc.getLoc_location());
-//			ps.setDate(7, bk_loc.getLoc_borrTime());
-//			ps.setDate(8, bk_loc.getLoc_dueTime());
 			
+			ps.setString(1, bk_loc.getLoc_barcode());
+			ps.setString(2, bk_loc.getLoc_voliss());
+			ps.setString(3, bk_loc.getLoc_room());
+			ps.setString(4, bk_loc.getLoc_status());
+			ps.setString(5, bk_loc.getLoc_location());
+			ps.setString(6, bk_loc.getLoc_callNo());
+
 			
-	
-			int rs = 		ps.executeUpdate();
-				
-		
+			int rs = ps.executeUpdate();
+			
 			if(rs > 0)
 			{
 				return true;
@@ -79,29 +76,44 @@ public class LocationDAOSQLImpl extends DAOBase implements LocationDAO {
 			return false;
 		}
 	}
-	public boolean updateLocation(Book_Location bk_loc)throws DAOException
+	public boolean updateLocation(Book_Location bk_loc) throws DAOException
 	{
-		String update_loc_sql="update "+loc_table_name+" set loc_status=? , loc_borrTime=? , loc_dueTime=? where loc_barcode=?";
+		String update_loc_sql="update book_storeinfo  set loc_voliss=?, loc_room=?, loc_status=?, loc_location=?,loc_callNo=? where loc_barcode=?";
 		
 		try{
 			
 			Connection conn = this.getConnection();
+			
 			PreparedStatement ps =conn.prepareStatement(update_loc_sql);
-			ps.setString(1, bk_loc.getLoc_status());
-			ps.setDate(2,bk_loc.getLoc_borrTime());
-			ps.setDate(3,bk_loc.getLoc_dueTime());
-			ps.setString(4, bk_loc.getLoc_barcode());
-			int rs = ps.executeUpdate(update_loc_sql);
+			
+			ps.setString(1, bk_loc.getLoc_voliss());
+			ps.setString(2, bk_loc.getLoc_room());
+			ps.setString(3, bk_loc.getLoc_status());
+			ps.setString(4, bk_loc.getLoc_location());
+			ps.setString(5, bk_loc.getLoc_callNo());
+			
+			ps.setString(6, bk_loc.getLoc_barcode());
+			System.out.println(update_loc_sql);
+			try {
+				
+			int rs = ps.executeUpdate();
+			return true;
+			}catch(Exception ex) {
+				
+				ex.printStackTrace();
+			}
+			
 			ps.close();
 			conn.close();
-			if(rs>0)
-			{
-				return true;
-			}
-			else
-			{
-				return false;
-			}
+		return true;
+//			if(rs>0)
+//			{
+//				return true;
+//			}
+//			else
+//			{
+//				return false;
+//			}
 			
 		}catch(Exception e)
 		{
@@ -131,9 +143,6 @@ public class LocationDAOSQLImpl extends DAOBase implements LocationDAO {
 			if(rs.next())
 			{
 				bk_loc.setLoc_barcode(rs.getString("loc_barcode"));
-				bk_loc.setLoc_borrTime(rs.getDate("loc_borrTime"));
-				bk_loc.setLoc_callNo(rs.getString("loc_callNo"));
-				bk_loc.setLoc_dueTime(rs.getDate("loc_dueTime"));
 				bk_loc.setLoc_location(rs.getString("loc_location"));
 				bk_loc.setLoc_room(rs.getString("loc_room"));
 				bk_loc.setLoc_status(rs.getString("loc_status"));
